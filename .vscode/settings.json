@@ -1,0 +1,16 @@
+{
+    // quando colar, formata
+    "editor.formatOnPaste": true,
+    //quando salvar, formata
+    "editor.formatOnSave": true,
+    //quando escrever, formata
+    "editor.formatOnType": true,
+    //força indentar como eu definir
+    "editor.detectIndentation": false,
+    //indenta com 2 espaços
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+        //força o eslint formatar tudo
+        "source.fixAll.eslint": true
+    }
+}
