@@ -3,35 +3,42 @@ CREATE DATABASE `db`;
 USE `db`;
 
 CREATE TABLE `customers` (
-  `cod_cliente` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `codCliente` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `saldo` FLOAT,
   `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
   `updated_at` DATETIME(3) NULL ON UPDATE NOW(3)
 );
 
 CREATE TABLE `assets` (
-  `cod_ativo` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `valor_ativo` FLOAT NOT NULL,
-  `qtd_ativo_disponivel` INT NOT NULL,
+  `codAtivo` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `valorAtivo` FLOAT NOT NULL,
+  `qtdAtivoDisponivel` INT NOT NULL,
   `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
   `updated_at` DATETIME(3) NULL ON UPDATE NOW(3)
 );
 
-CREATE TABLE `transaction_sq/dep` (
-  `cod_transacaoSD` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `cod_cliente` INT NOT NULL,
-  `character_id` INT NOT NULL,
-  `tipo_transacaoSD` VARCHAR(8) NOT NULL,
-  FOREIGN KEY (`cod_cliente`) REFERENCES `customers` (`cod_cliente`) ON DELETE CASCADE,
+CREATE TABLE `operation` (
+  `codOperacao` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `descricao` VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE `transaction_assets` (
-  `cod_transacaoCV` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `cod_cliente` INT NOT NULL,
-  `cod_ativo` INT NOT NULL,
-  `qtd_ativo_CV` INT NOT NULL,
-  `tipo_transacaoCV` VARCHAR(6) NOT NULL,
-  `valor_tot_transacao` FLOAT NOT NULL,
-  FOREIGN KEY (`cod_cliente`) REFERENCES `customers` (`cod_cliente`) ON DELETE CASCADE,
-  FOREIGN KEY (`cod_ativo`) REFERENCES `assets` (`cod_ativo`) ON DELETE CASCADE
+CREATE TABLE `transactionSq/dep` (
+  `codTransacaoSD` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `codCliente` INT NOT NULL,
+  `valor` FLOAT NOT NULL,
+  `tipoTransacaoSD` INT NOT NULL,
+  FOREIGN KEY (`codCliente`) REFERENCES `customers` (`codCliente`) ON DELETE CASCADE,
+  FOREIGN KEY (`tipoTransacaoSD`) REFERENCES `operation` (`codOperacao`) ON DELETE CASCADE
+);
+
+CREATE TABLE `transactionAssets` (
+  `codTransacaoCV` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `codCliente` INT NOT NULL,
+  `codAtivo` INT NOT NULL,
+  `qtdAtivoCV` INT NOT NULL,
+  `tipoTransacaoCV` INT NOT NULL,
+  `valorTotTransacao` FLOAT NOT NULL,
+  FOREIGN KEY (`codCliente`) REFERENCES `customers` (`codCliente`) ON DELETE CASCADE,
+  FOREIGN KEY (`codAtivo`) REFERENCES `assets` (`codAtivo`) ON DELETE CASCADE,
+  FOREIGN KEY (`tipoTransacaoCV`) REFERENCES `operation` (`codOperacao`) ON DELETE CASCADE
 );

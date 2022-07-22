@@ -9,12 +9,12 @@ const customerController = {
     res.json(item);
   },
 
-  async listCharacters(req, res) {
+  async listCustomer(req, res) {
     const items = await customerService.list();
     res.json(items);
   },
 
-  async addCharacter(req, res) {
+  async addCustomer(req, res) {
     const data = await customerService.validateBodyAdd(req.body);
     const id = await customerService.add(data);
     const item = await customerService.get(id);
