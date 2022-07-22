@@ -1,24 +1,23 @@
 const express = require('express');
-const mysql = require('mysql2/promise');
+require('express-async-errors');
+const customersRoute = require('./routes/customersRouter');
+const assetsRoute = require('./routes/assetsRouter');
+
+const APP_PORT = Number(process.env.APP_PORT || 3000);
 
 const app = express();
 app.use(express.json());
 
-const db = mysql.createPool({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: 'root',
-});
+app.use('/customers', customersRoute);
+app.use('/assets', assetsRoute);
 
-app.get('/customers/:id', async (req, res) => {
-  try {
-    const sql = 'select * from db.customers where cod_cliente = 1';
-    const [[item]] = await db.query(sql);
-    res.json(item);
-  } catch (error) {
-    res.status(500).json({ message: 'Erro no banco ' });
+app.use((err, _req, res, _next) => {
+  const { name, message } = err;
+  switch (name) {
+    case 'ValidationError': res.status(400).json({ message }); break;
+    case 'NotFoundError': res.status(404).json({ message }); break;
+    default: console.warn(err); res.sendStatus(500);
   }
 });
 
-app.listen(3000, () => console.log('rodando na porta 3000'));
+app.listen(APP_PORT, () => console.log(`running on port ${APP_PORT}`));
