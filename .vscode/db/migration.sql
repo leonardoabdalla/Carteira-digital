@@ -4,7 +4,7 @@ USE `db`;
 
 CREATE TABLE `customers` (
   `codCliente` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `saldo` FLOAT,
+  `saldo` DECIMAL,
   `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
   `updated_at` DATETIME(3) NULL ON UPDATE NOW(3)
 );
@@ -25,7 +25,7 @@ CREATE TABLE `operation` (
 CREATE TABLE `transactionSqDep` (
   `codTransacaoSD` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `codCliente` INT NOT NULL,
-  `valor` FLOAT NOT NULL,
+  `valor` DECIMAL NOT NULL,
   `tipoTransacaoSD` INT NOT NULL,
   `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
   `updated_at` DATETIME(3) NULL ON UPDATE NOW(3),

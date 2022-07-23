@@ -16,6 +16,12 @@ const contaService = {
     return saque;
   },
 
+  async addDeposito(codCliente, valor, contaCliente) {
+    const subtracaoValor = contaCliente.saldo + valor;
+    const deposito = await contaModel.addDeposito(codCliente, valor, subtracaoValor);
+    return deposito;
+  },
+
 };
 
 module.exports = contaService;
