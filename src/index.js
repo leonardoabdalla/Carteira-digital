@@ -3,6 +3,7 @@ require('express-async-errors');
 const customersRoute = require('./routes/customersRouter');
 const assetsRoute = require('./routes/assetsRouter');
 const investimentosRoute = require('./routes/investimentosRoute');
+const contaRoute = require('./routes/contaRoute');
 
 const APP_PORT = Number(process.env.APP_PORT || 3000);
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use('/customers', customersRoute);
 app.use('/assets', assetsRoute);
 app.use('/investimentos', investimentosRoute);
+app.use('/conta', contaRoute);
 
 app.use((err, _req, res, _next) => {
   const { name, message } = err;

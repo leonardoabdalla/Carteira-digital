@@ -10,7 +10,8 @@ const investimentosModel = {
     const sqlUpdate = `UPDATE db.assets SET qtdAtivoDisponivel = ? 
       WHERE codAtivo = ?`;
     await db.query(sqlUpdate, [ativosDisponiveis, codAtivo]);
-    const sqlUpdateSaldo = `UPDATE db.customers SET saldo = ? WHERE codCliente = ?`;
+    const sqlUpdateSaldo = `UPDATE db.customers SET saldo = ? 
+    WHERE codCliente = ?`;
     await db.query(sqlUpdateSaldo, [saldoCliente, codCliente]);
 
     return newAdd[0].insertId;
@@ -30,12 +31,12 @@ const investimentosModel = {
     const filterCompra = Object.values(getFilterCompra);
     const resultCompra = filterCompra[0];
     console.log('===> model compra ===> ', resultCompra);
-    const venda_compra = {
+    const vendaCompra = {
       resultVenda,
-      resultCompra
-    }
+      resultCompra,
+    };
 
-    return venda_compra;
+    return vendaCompra;
   },
 
   async addVenda(codCliente, codAtivo, qtdAtivo, valorTotal, devolvendoAtivos, saldoCliente) {
@@ -45,7 +46,8 @@ const investimentosModel = {
     const sqlUpdate = `UPDATE db.assets SET qtdAtivoDisponivel = ? 
       WHERE codAtivo = ?`;
     await db.query(sqlUpdate, [devolvendoAtivos, codAtivo]);
-    const sqlUpdateCustomer = `UPDATE db.customers SET saldo = ? WHERE codCliente = ?`;
+    const sqlUpdateCustomer = `UPDATE db.customers SET saldo = ? 
+      WHERE codCliente = ?`;
     await db.query(sqlUpdateCustomer, [saldoCliente, codCliente]);
     return newAdd[0].insertId;
   },

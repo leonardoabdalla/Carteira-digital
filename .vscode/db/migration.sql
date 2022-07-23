@@ -22,7 +22,7 @@ CREATE TABLE `operation` (
   `descricao` VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE `transactionSq/dep` (
+CREATE TABLE `transactionSqDep` (
   `codTransacaoSD` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `codCliente` INT NOT NULL,
   `valor` FLOAT NOT NULL,

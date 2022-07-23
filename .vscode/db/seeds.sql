@@ -4,7 +4,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 TRUNCATE TABLE `customers`;
 TRUNCATE TABLE `assets`;
-TRUNCATE TABLE `transactionSq/dep`;
+TRUNCATE TABLE `transactionSqDep`;
 TRUNCATE TABLE `transactionAssets`;
 
 SET FOREIGN_KEY_CHECKS = 1;
@@ -30,7 +30,7 @@ INSERT INTO  `operation` (`codOperacao`, `descricao`) VALUES
   (3, 'Compra'),
   (4, 'Venda');
 
-INSERT INTO  `transactionSq/dep` (`codTransacaoSD`, `codCliente`, `valor`, `tipoTransacaoSD`) VALUES 
+INSERT INTO  `transactionSqDep` (`codTransacaoSD`, `codCliente`, `valor`, `tipoTransacaoSD`) VALUES 
   (1, 1, 50.00, 2),
   (2, 2, 50.00, 1),
   (3, 3, 50.00, 2),

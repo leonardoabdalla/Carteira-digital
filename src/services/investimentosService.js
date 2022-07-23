@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 const investimentosModel = require('../models/investimentosModel');
 const NotFoundError = require('../erros/NotFoundError');
 
@@ -18,7 +19,6 @@ const investimentosService = {
     const valorSuficiente = getCliente.saldo - valorTotAtivo;
     if (valorSuficiente < 0) {
       throw new NotFoundError('Saldo insuficiênte para compra');
-
     }
     return valorSuficiente;
   },
