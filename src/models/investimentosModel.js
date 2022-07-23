@@ -3,13 +3,16 @@ const db = require('./db');
 
 const investimentosModel = {
 
-  async add(codCliente, codAtivo, qtdAtivo, valorTotal, ativosDisponiveis) {
+  async add(codCliente, codAtivo, qtdAtivo, valorTotal, ativosDisponiveis, saldoCliente) {
     const sql = `INSERT INTO db.transactionAssets (codCliente, codAtivo, 
         qtdAtivo, tipoTransacaoCV, valorTotTransacao) VALUES (?, ?, ?, ?, ?)`;
     const newAdd = await db.query(sql, [codCliente, codAtivo, qtdAtivo, 3, valorTotal]);
     const sqlUpdate = `UPDATE db.assets SET qtdAtivoDisponivel = ? 
       WHERE codAtivo = ?`;
     await db.query(sqlUpdate, [ativosDisponiveis, codAtivo]);
+    const sqlUpdateSaldo = `UPDATE db.customers SET saldo = ? WHERE codCliente = ?`;
+    await db.query(sqlUpdateSaldo, [saldoCliente, codCliente]);
+
     return newAdd[0].insertId;
   },
 
@@ -35,13 +38,15 @@ const investimentosModel = {
     return venda_compra;
   },
 
-  async addVenda(codCliente, codAtivo, qtdAtivo, valorTotal, devolvendoAtivos) {
+  async addVenda(codCliente, codAtivo, qtdAtivo, valorTotal, devolvendoAtivos, saldoCliente) {
     const sql = `INSERT INTO db.transactionAssets (codCliente, codAtivo, 
         qtdAtivo, tipoTransacaoCV, valorTotTransacao) VALUES (?, ?, ?, ?, ?)`;
     const newAdd = await db.query(sql, [codCliente, codAtivo, qtdAtivo, 4, valorTotal]);
     const sqlUpdate = `UPDATE db.assets SET qtdAtivoDisponivel = ? 
       WHERE codAtivo = ?`;
     await db.query(sqlUpdate, [devolvendoAtivos, codAtivo]);
+    const sqlUpdateCustomer = `UPDATE db.customers SET saldo = ? WHERE codCliente = ?`;
+    await db.query(sqlUpdateCustomer, [saldoCliente, codCliente]);
     return newAdd[0].insertId;
   },
 

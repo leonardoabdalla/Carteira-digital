@@ -9,8 +9,10 @@ const investimentosController = {
     const dataCliente = await customersService.checkIfExists(codCliente);
     const dataAtivo = await assetsService.checkIfExists(codAtivo);
     const getAtivo = await assetsService.get(codAtivo);
+    const getCliente = await customersService.get(codCliente);
+    const saldoCliente = await investimentosService.chekSaldo(codCliente, codAtivo, getAtivo, getCliente, qtdAtivo);
     console.log(dataCliente, dataAtivo);
-    const id = await investimentosService.add(codCliente, codAtivo, qtdAtivo, getAtivo);
+    const id = await investimentosService.add(codCliente, codAtivo, qtdAtivo, getAtivo, saldoCliente);
     const item = await investimentosService.get(id);
     res.status(201).json(item);
   },
@@ -20,15 +22,12 @@ const investimentosController = {
     const dataCliente = await customersService.checkIfExists(codCliente);
     const dataAtivo = await assetsService.checkIfExists(codAtivo);
     const getAtivo = await assetsService.get(codAtivo);
+    const getCliente = await customersService.get(codCliente);
     console.log(dataCliente, dataAtivo);
-    const id = await investimentosService.addVenda(codCliente, codAtivo, qtdAtivo, getAtivo);
+    const id = await investimentosService.addVenda(codCliente, codAtivo, qtdAtivo, getAtivo, getCliente);
     const item = await investimentosService.get(id);
     res.status(201).json(item);
   },
 };
-
-// const data = await characterService.validateBodyAdd(req.body);
-// const id = await characterService.add(data);
-// const item = await characterService.get(id);
 
 module.exports = investimentosController;

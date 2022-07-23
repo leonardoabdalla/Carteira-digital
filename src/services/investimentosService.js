@@ -2,18 +2,28 @@ const investimentosModel = require('../models/investimentosModel');
 const NotFoundError = require('../erros/NotFoundError');
 
 const investimentosService = {
-  async add(codCliente, codAtivo, qtdAtivo, getAtivo) {
+  async add(codCliente, codAtivo, qtdAtivo, getAtivo, saldoCliente) {
     if (getAtivo.qtdAtivoDisponivel < qtdAtivo) {
       throw new NotFoundError('Quantidade de ativos disponível insuficiente');
     }
     const valorTotal = getAtivo.valorAtivo * qtdAtivo;
     const ativosDisponiveis = getAtivo.qtdAtivoDisponivel - qtdAtivo;
     const id = await investimentosModel.add(codCliente, codAtivo, qtdAtivo,
-      valorTotal, ativosDisponiveis);
+      valorTotal, ativosDisponiveis, saldoCliente);
     return id;
   },
 
-  async addVenda(codCliente, codAtivo, qtdAtivo, getAtivo) {
+  async chekSaldo(codCliente, codAtivo, getAtivo, getCliente, qtdAtivo) {
+    const valorTotAtivo = getAtivo.valorAtivo * qtdAtivo;
+    const valorSuficiente = getCliente.saldo - valorTotAtivo;
+    if (valorSuficiente < 0) {
+      throw new NotFoundError('Saldo insuficiênte para compra');
+
+    }
+    return valorSuficiente;
+  },
+
+  async addVenda(codCliente, codAtivo, qtdAtivo, getAtivo, getCliente) {
     const filtroInvestimento = await investimentosModel.filtroInvestimento(codCliente, codAtivo);
     const atualAtivos = filtroInvestimento.resultCompra - filtroInvestimento.resultVenda;
     console.log('SERVICE   =====> ', atualAtivos);
@@ -22,8 +32,9 @@ const investimentosService = {
     }
     const valorTotal = getAtivo.valorAtivo * qtdAtivo;
     const devolvendoAtivos = getAtivo.qtdAtivoDisponivel + qtdAtivo;
+    const saldoCliente = getCliente.saldo + valorTotal;
     const id = await investimentosModel.addVenda(codCliente, codAtivo,
-      qtdAtivo, valorTotal, devolvendoAtivos);
+      qtdAtivo, valorTotal, devolvendoAtivos, saldoCliente);
     return id;
   },
 
