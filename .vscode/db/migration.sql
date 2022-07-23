@@ -11,7 +11,7 @@ CREATE TABLE `customers` (
 
 CREATE TABLE `assets` (
   `codAtivo` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `valorAtivo` FLOAT NOT NULL,
+  `valorAtivo` DECIMAL NOT NULL,
   `qtdAtivoDisponivel` INT NOT NULL,
   `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
   `updated_at` DATETIME(3) NULL ON UPDATE NOW(3)
