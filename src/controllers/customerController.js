@@ -13,13 +13,6 @@ const customerController = {
     const items = await customerService.list();
     res.json(items);
   },
-
-  async addCustomer(req, res) {
-    const data = await customerService.validateBodyAdd(req.body);
-    const id = await customerService.add(data);
-    const item = await customerService.get(id);
-    res.status(201).json(item);
-  },
 };
 
 module.exports = customerController;

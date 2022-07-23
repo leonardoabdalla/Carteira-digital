@@ -12,7 +12,11 @@ const customersService = {
 
   async get(id) {
     const item = await customersModel.get(id);
-    return item;
+    console.log(item.saldo, item.codCliente);
+    const { codCliente } = item;
+    const { saldo } = item;
+    const cliente = { codCliente, saldo };
+    return cliente;
   },
 
   async list() {
