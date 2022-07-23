@@ -37,7 +37,7 @@ INSERT INTO  `transactionSq/dep` (`codTransacaoSD`, `codCliente`, `valor`, `tipo
   (4, 4, 50.00, 1),
   (5, 4, 100.00, 2);
 
-INSERT INTO `transactionAssets` (`codTransacaoCV`, `codCliente`, `codAtivo`, `qtdAtivoCV`, `tipoTransacaoCV`, `valorTotTransacao`) VALUES
+INSERT INTO `transactionAssets` (`codTransacao`, `codCliente`, `codAtivo`, `qtdAtivoCV`, `tipoTransacaoCV`, `valorTotTransacao`) VALUES
   (1, 1, 1, 5, 3, 100.00),
   (2, 2, 3, 10, 4, 500.00),
   (3, 3, 4, 5, 3, 500.00),

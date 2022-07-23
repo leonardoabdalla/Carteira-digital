@@ -1,12 +1,12 @@
 const db = require('./db');
 
-const customersModel = {
+const assetsModel = {
 
   async exists(id) {
     const sql = `
       SELECT 1 
-      FROM db.customers 
-      WHERE codCliente = ?
+      FROM db.assets 
+      WHERE codAtivo = ?
     `;
     const [[exists]] = await db.query(sql, [id]);
     return !!exists;
@@ -15,8 +15,8 @@ const customersModel = {
   async get(id) {
     const sql = `
       SELECT * 
-      FROM db.customers 
-      WHERE codCliente = ?
+      FROM db.assets 
+      WHERE codAtivo = ?
     `;
     const [[item]] = await db.query(sql, [id]);
     return item;
@@ -25,20 +25,12 @@ const customersModel = {
   async list() {
     const sql = `
       SELECT * 
-      FROM db.customers
+      FROM db.assets
     `;
     const [items] = await db.query(sql);
     return items;
   },
 
-  // async add(data) {
-  //   const sql = `
-  //     INSERT INTO db.customers (name) 
-  //     VALUES (?)
-  //   `;
-  //   const [{ insertId }] = await db.query(sql, [data.name]);
-  //   return insertId;
-  // },
 };
 
-module.exports = customersModel;
+module.exports = assetsModel;

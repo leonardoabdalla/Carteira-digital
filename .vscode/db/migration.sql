@@ -27,6 +27,8 @@ CREATE TABLE `transactionSq/dep` (
   `codCliente` INT NOT NULL,
   `valor` FLOAT NOT NULL,
   `tipoTransacaoSD` INT NOT NULL,
+  `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
+  `updated_at` DATETIME(3) NULL ON UPDATE NOW(3),
   FOREIGN KEY (`codCliente`) REFERENCES `customers` (`codCliente`) ON DELETE CASCADE,
   FOREIGN KEY (`tipoTransacaoSD`) REFERENCES `operation` (`codOperacao`) ON DELETE CASCADE
 );
@@ -35,9 +37,11 @@ CREATE TABLE `transactionAssets` (
   `codTransacaoCV` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `codCliente` INT NOT NULL,
   `codAtivo` INT NOT NULL,
-  `qtdAtivoCV` INT NOT NULL,
+  `qtdAtivo` INT NOT NULL,
   `tipoTransacaoCV` INT NOT NULL,
   `valorTotTransacao` FLOAT NOT NULL,
+  `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
+  `updated_at` DATETIME(3) NULL ON UPDATE NOW(3),
   FOREIGN KEY (`codCliente`) REFERENCES `customers` (`codCliente`) ON DELETE CASCADE,
   FOREIGN KEY (`codAtivo`) REFERENCES `assets` (`codAtivo`) ON DELETE CASCADE,
   FOREIGN KEY (`tipoTransacaoCV`) REFERENCES `operation` (`codOperacao`) ON DELETE CASCADE

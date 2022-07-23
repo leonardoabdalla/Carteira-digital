@@ -3,7 +3,7 @@ const customerService = require('../services/customerService');
 const customerController = {
 
   async getCustomer(req, res) {
-    const { id } = await customerService.validateParamsId(req.params);
+    const { id } = req.params;
     await customerService.checkIfExists(id);
     const item = await customerService.get(id);
     res.json(item);
