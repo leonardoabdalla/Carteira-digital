@@ -17,6 +17,9 @@ const contaService = {
   },
 
   async addDeposito(codCliente, valor, contaCliente) {
+    if (valor <= 0) {
+      throw new NotFoundError('Saldo não pode ser igual ou menor que zero');
+    }
     const subtracaoValor = contaCliente.saldo + valor;
     const deposito = await contaModel.addDeposito(codCliente, valor, subtracaoValor);
     return deposito;
