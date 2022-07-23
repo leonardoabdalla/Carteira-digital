@@ -5,7 +5,6 @@ const ativosService = {
 
   async get(id) {
     const item = await ativosModel.arrayAtivos(id);
-    console.log('service ===> ', item);
     return item;
   },
 

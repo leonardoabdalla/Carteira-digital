@@ -13,7 +13,11 @@ const assetsService = {
 
   async get(id) {
     const item = await assetsModel.get(id);
-    return item;
+    const { codAtivo } = item;
+    const { qtdAtivoDisponivel } = item;
+    const { valorAtivo } = item;
+    const cliente = { codAtivo, qtdAtivoDisponivel, valorAtivo };
+    return cliente;
   },
 
   async list() {

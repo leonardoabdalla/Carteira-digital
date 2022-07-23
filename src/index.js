@@ -1,7 +1,6 @@
 const express = require('express');
 require('express-async-errors');
 const customersRoute = require('./routes/customersRouter');
-const assetsRoute = require('./routes/assetsRouter');
 const investimentosRoute = require('./routes/investimentosRoute');
 const contaRoute = require('./routes/contaRoute');
 const ativosRouter = require('./routes/ativosRouter');
@@ -12,7 +11,6 @@ const app = express();
 app.use(express.json());
 
 app.use('/customers', customersRoute);
-app.use('/assets', assetsRoute);
 app.use('/investimentos', investimentosRoute);
 app.use('/conta', contaRoute);
 app.use('/ativos', ativosRouter);
