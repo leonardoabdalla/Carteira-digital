@@ -3,5 +3,7 @@ const investimentosController = require('../controllers/investimentosController'
 
 const investimentosRoute = Router();
 
-investimentosRoute.post('/comprar', investimentosController.addCharacter);
+investimentosRoute.post('/comprar', investimentosController.addTransacaoCompra);
+investimentosRoute.post('/vender', investimentosController.addTransacaoVenda);
+
 module.exports = investimentosRoute;
