@@ -30,15 +30,6 @@ const customersModel = {
     const [items] = await db.query(sql);
     return items;
   },
-
-  // async add(data) {
-  //   const sql = `
-  //     INSERT INTO db.customers (name) 
-  //     VALUES (?)
-  //   `;
-  //   const [{ insertId }] = await db.query(sql, [data.name]);
-  //   return insertId;
-  // },
 };
 
 module.exports = customersModel;

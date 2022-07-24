@@ -1,6 +1,6 @@
 const express = require('express');
 require('express-async-errors');
-// const cors = require('cors');
+const cors = require('cors');
 const customersRoute = require('./routes/customersRouter');
 const investimentosRoute = require('./routes/investimentosRoute');
 const contaRoute = require('./routes/contaRoute');
@@ -9,9 +9,16 @@ const ativosRouter = require('./routes/ativosRouter');
 const APP_PORT = Number(process.env.APP_PORT || 3000);
 
 const app = express();
+// app.use(cors);
 app.use(express.json());
 
-// app.use(cors);
+app.use((req, res, next) => {
+  res.header('Acess-Control-Allow-Origin', '*');
+  res.header('Acess-Control-Allow-Methods', 'GET, POST');
+  app.use(cors());
+  next();
+});
+
 app.use('/customers', customersRoute);
 app.use('/investimentos', investimentosRoute);
 app.use('/conta', contaRoute);

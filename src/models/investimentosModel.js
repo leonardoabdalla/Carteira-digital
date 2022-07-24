@@ -23,14 +23,12 @@ const investimentosModel = {
     const [[getFilterVenda]] = await db.query(sqlVenda, [codCliente, codAtivo]);
     const filterVenda = Object.values(getFilterVenda);
     const resultVenda = filterVenda[0];
-    console.log('===> model venda ===> ', resultVenda);
 
     const sqlCompra = `SELECT SUM(qtdAtivo) FROM db.transactionAssets 
       WHERE codCliente = ? AND codAtivo = ? AND tipoTransacaoCV = 3`;
     const [[getFilterCompra]] = await db.query(sqlCompra, [codCliente, codAtivo]);
     const filterCompra = Object.values(getFilterCompra);
     const resultCompra = filterCompra[0];
-    console.log('===> model compra ===> ', resultCompra);
     const vendaCompra = {
       resultVenda,
       resultCompra,
