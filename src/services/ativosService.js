@@ -14,9 +14,6 @@ const ativosService = {
         ativo.qtdAtivo = novoValor;
         const novoArray = ativos;
         console.log('aivos no if ===> ', novoArray);
-      } else {
-        console.log('no else ==> ', ativos);
-        return ativos;
       }
     });
     return ativos;
