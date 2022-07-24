@@ -11,6 +11,7 @@
   <li>Docker</li>
   <li>Validação JWT</li>
   <li>Modelo MSC</li>
+  <li>Tratamento de erros com lib assync_error</li>
 </ul>
 
 <h3>Tomadas de decisões</h3>
@@ -32,3 +33,17 @@ apenas implementar as rotas e aplicar a lógica<p>
 utilizei bastante tempo pensando em uma melhor forma de desenvolve-las.
 
 <h3>Instruções de como compilar e executar o projeto</h3>
+
+<ol>
+ <li>Clne o repositório</li>
+ <ul>
+  <li>git clone git@github.com:leonardoabdalla/Carteira-digital.git</li>
+  <li>Entre na pasta do repositório<li>
+ </ul>
+ <li>Instale as dependências</li>
+ <ul>
+  <li>npm install</li>
+ </ul>
+ <li>Excute npm start no terminal para excução do projeto</li>
+ <li>Se for usar o docker, os comando npm install e npm start devem ser executado dentro do container</li>
+</ol>
