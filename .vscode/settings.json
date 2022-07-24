@@ -12,5 +12,8 @@
     "editor.codeActionsOnSave": {
         //força o eslint formatar tudo
         "source.fixAll.eslint": true
-    }
+    },
+    "cSpell.words": [
+      "ativo"
+    ]
 }

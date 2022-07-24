@@ -14,16 +14,16 @@ const contaModel = {
     return saldoAtualizado;
   },
 
-  async addDeposito(codCliente, valor, contaCliente) {
+  async addDeposito(codCliente, subtracaoValor, valor) {
     const sqlRegistro = `INSERT INTO db.transactionSqDep (codCliente, valor, tipoTransacaoSD) 
     VALUES (?, ?, ?)`;
     await db.query(sqlRegistro, [codCliente, valor, 2]);
 
     const sqlAtualizaSaldo = `UPDATE db.customers SET saldo = ? 
       WHERE codCliente = ?`;
-    const saldoAtualizado = await db.query(sqlAtualizaSaldo, [contaCliente, codCliente]);
+    const saldoReal = await db.query(sqlAtualizaSaldo, [subtracaoValor, codCliente]);
 
-    return saldoAtualizado;
+    return saldoReal;
   },
 };
 

@@ -7,6 +7,7 @@ const ativosController = {
     const { id } = req.params;
     await assetsService.checkIfExists(id);
     const item = await ativosService.get(id);
+    console.log('controller ==> ', item);
     res.json(item);
   },
 

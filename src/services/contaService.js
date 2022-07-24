@@ -20,8 +20,9 @@ const contaService = {
     if (valor <= 0) {
       throw new NotFoundError('Saldo não pode ser igual ou menor que zero');
     }
-    const subtracaoValor = contaCliente.saldo + valor;
-    const deposito = await contaModel.addDeposito(codCliente, valor, subtracaoValor);
+    const subtracaoValor = parseFloat(contaCliente.saldo) + valor;
+    console.log('service ===> ', subtracaoValor);
+    const deposito = await contaModel.addDeposito(codCliente, subtracaoValor, valor);
     return deposito;
   },
 

@@ -24,9 +24,13 @@ const investimentosService = {
   },
 
   async addVenda(codCliente, codAtivo, qtdAtivo, getAtivo, getCliente) {
+    console.log('qtdAtivo ==> ', qtdAtivo);
     const filtroInvestimento = await investimentosModel.filtroInvestimento(codCliente, codAtivo);
+    if (filtroInvestimento.resultCompra < qtdAtivo) {
+      throw new NotFoundError('Quantidade de ativos insuficiênte');
+    }
     const atualAtivos = filtroInvestimento.resultCompra - filtroInvestimento.resultVenda;
-    console.log('SERVICE   =====> ', atualAtivos);
+    console.log('SERVICE   =====> ', filtroInvestimento);
     if (atualAtivos < 0 || filtroInvestimento.resultCompra === null) {
       throw new NotFoundError('Quantidade de ativos insuficiênte');
     }
