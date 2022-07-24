@@ -1,4 +1,6 @@
  <h1>Projeto Carteira Digital</h1>
+ 
+[Gravação de tela de 24-07-2022 18:36:38.webm](https://user-images.githubusercontent.com/92415527/180666864-6bf7c1e5-7f42-4e5c-8dcd-22d87ec70967.webm)
 
 <h2>Descrição do projeto Carteira digital</h2>
   <p>Uma aplicação back-end que simula uma carteira digital de investimentos onde nela é possivel o cliente acompanhar os ativos 
