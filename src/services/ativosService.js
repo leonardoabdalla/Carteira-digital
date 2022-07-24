@@ -4,19 +4,29 @@ const ativosService = {
 
   async get(id) {
     const ativos = await ativosModel.arrayAtivos(id);
-    await ativos.map(async (ativo) => {
-      const verificaVenda = await ativosModel.ativosVendas(ativo.codAtivo, ativo.codCliente);
-      if (verificaVenda !== undefined) {
-        const { codCliente, ...name } = verificaVenda;
-        const qtdVenda = name.qtdAtivo;
-        const novoValor = ativo.qtdAtivo - qtdVenda;
-        // eslint-disable-next-line no-param-reassign
-        ativo.qtdAtivo = novoValor;
-        const novoArray = ativos;
-        console.log('aivos no if ===> ', novoArray);
+    console.log('ativos.length ==>', ativos.length);
+    let soma = 0;
+    for (let i = 0; i < ativos.length; i += 1) {
+      const verificaVenda = await ativosModel.ativosVendas(ativos[i]
+        .codAtivo, ativos[i].codCliente);
+      if (verificaVenda === undefined) {
+        soma += 1;
+        console.log('soma ==>', soma);
+        if (soma === ativos.length) {
+          return ativos;
+        }
       }
-    });
-    return ativos;
+      if (verificaVenda !== undefined) {
+        console.log('if != undefined ===> ', verificaVenda);
+        const { codCliente, ...name } = verificaVenda;
+        const qtdVenda = parseFloat(name.qtdAtivo);
+        const novoValor = parseFloat(ativos[i].qtdAtivo) - qtdVenda;
+        // eslint-disable-next-line no-param-reassign
+        ativos[i].qtdAtivo = novoValor;
+        const novoArray = ativos;
+        return novoArray;
+      }
+    }
   },
 };
 

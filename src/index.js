@@ -1,5 +1,6 @@
 const express = require('express');
 require('express-async-errors');
+// const cors = require('cors');
 const customersRoute = require('./routes/customersRouter');
 const investimentosRoute = require('./routes/investimentosRoute');
 const contaRoute = require('./routes/contaRoute');
@@ -10,6 +11,7 @@ const APP_PORT = Number(process.env.APP_PORT || 3000);
 const app = express();
 app.use(express.json());
 
+// app.use(cors);
 app.use('/customers', customersRoute);
 app.use('/investimentos', investimentosRoute);
 app.use('/conta', contaRoute);
