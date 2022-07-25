@@ -9,12 +9,12 @@ TRUNCATE TABLE `transactionAssets`;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-INSERT INTO  `customers` (`codCliente`, `saldo`) VALUES 
-  (1, 1000.00, '123456789'),
-  (2, 5000.00, '12345678'),
-  (3, 2000.00, '123456'),
-  (4, 1000.00, '1234567810'),
-  (5, 500.00, '1234567');
+INSERT INTO  `customers` (`codCliente`, `password`, `saldo`) VALUES 
+  (1, 123456, 1000.00),
+  (2, 1234567, 5000.00),
+  (3, 12345678, 2000.00),
+  (4, 123456789, 1000.00),
+  (5, 1234567890, 500.00);
 
 INSERT INTO `assets` (`codAtivo`, `valorAtivo`, `qtdAtivoDisponivel`) VALUES
   (1, 10.00, 100),

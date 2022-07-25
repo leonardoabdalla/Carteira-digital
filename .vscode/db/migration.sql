@@ -4,6 +4,7 @@ USE `db`;
 
 CREATE TABLE `customers` (
   `codCliente` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `password` INT NOT NULL,
   `saldo` DECIMAL,
   `created_at` DATETIME(3) NOT NULL DEFAULT NOW(3),
   `updated_at` DATETIME(3) NULL ON UPDATE NOW(3)
