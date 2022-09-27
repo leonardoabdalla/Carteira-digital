@@ -16,26 +16,6 @@
  <li>Cors</li>
 </ul>
 
-<h3>Tomadas de decisões</h3>
-
-<p>Nesse projeto decidi não utilizar ORM, primeiro por ter mais segurança em desenvolver dessa forma e também por sentir mais prazer em ter que
-trabalhar diretamente com o banco de dados através do model, assim também compreendo melhor como cada resultada está sendo gerado, já com o Sequelize não vejo tudo acontecendo de forma tão clara, portanto ainda não 
-tenho prática suficiênte para dizer como acontece o mecanismo de cada funcionalidade. </p>
-<p>Decidi iniciar pela criação das rotas Post, assim pude ir sentindo se haveria necessidade de alterar a quantidade de tabelas ou suas colunas,
-o que na verdade aconteceu algumas vezes ao longo do desenvolvimento.<p>
-<p>Utilizei o modelo MSC para assim deixar tudo mais organizado<p>
-<p>Procurei realizar todas as tratativas de erros<p>
-<p>OBS: O código não está tão limpo e bem longe de como eu realmente gostaria de entregar, mas devido ao tempo optei por fazer o melhor possivel dentro 
-do tempo em que conseguisse entregar o resultado esperado.</p>
-
-<h3>Pincipais dificuldades</h3>
-
-<p>Setup inicial me fez perder bastante tempo já que geralmente trabalho em cima de projetos já prontos, sendo necessário
-apenas implementar as rotas e aplicar a lógica<p>
-<p>Maior dificuldade foi em pensar no schema, já que algo errado nesse primeiro momento poderia comprometer todo o projeto, portanto 
-utilizei bastante tempo pensando em uma melhor forma de desenvolve-las.
-<p>Tive muita dificuldade também com a rota GET BY CLIENT já que o foreach e o map não funcionaram e até eu lembrar da existência do FOR que já não utilizo a tanto tempo demorou um pouco.</p> 
-
 <h3>Instruções de como compilar e executar o projeto</h3>
 
 <ol>
